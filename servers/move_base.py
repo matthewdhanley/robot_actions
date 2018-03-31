@@ -30,13 +30,13 @@ class RobotAction(object):
         rospy.Subscriber('/tag_detections_pose', PoseArray, self.subscribe_cb)
 
         # publishing
-        self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+        self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
 
         # constants
         self.max_scalar = 2
         self.max_speed = 100.0
         self.kp = 15  # proportional constant
-        self.max_time = 20  # time to get to goal
+        self.max_time = 60  # time to get to goal
 
         # self.time_limit = 500  # time limit to get to target
         rospy.loginfo("RobotAction Server Init Complete.")
