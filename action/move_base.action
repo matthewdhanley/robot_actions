@@ -1,0 +1,8 @@
+#goal def
+geometry_msgs/Point location
+---
+#result def
+geometry_msgs/Point location
+---
+#feedback
+geometry_msgs/Point location
