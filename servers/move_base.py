@@ -34,9 +34,10 @@ class RobotAction(object):
 
         # constants
         self.max_scalar = 2
-        self.max_speed = 100.0
-        self.kp = 15  # proportional constant
+        self.max_speed = 30
+        self.kp = 20 # proportional constant
         self.max_time = 60  # time to get to goal
+	self.max_error = 0.5
 
         # self.time_limit = 500  # time limit to get to target
         rospy.loginfo("RobotAction Server Init Complete.")
@@ -67,7 +68,8 @@ class RobotAction(object):
         rospy.loginfo("goal: %s" % goal.location)
 
         start_time = time.time()
-        while self._feedback.location.y < goal.location.y and success:
+	rospy.loginfo("GOAL: %s" % goal.location.y)
+        while abs(self._feedback.location.y - goal.location.y) > self.max_error and success:
 
             # we want to check if the requested action has been canceled or "preempted"
             if self._as.is_preempt_requested():
